@@ -1,0 +1,13 @@
+Lajawaab — an ink-wash visualizer
+Third-party assets and licences
+
+Fonts
+- Cormorant Garamond (variable, roman + italic) and Cormorant SC — Catharsis Fonts, SIL Open Font License 1.1 (fonts/OFL-Cormorant.txt). Source: github.com/google/fonts, ofl/cormorantgaramond, ofl/cormorantsc.
+- Ma Shan Zheng — Google Fonts, SIL Open Font License 1.1 (fonts/OFL-MaShanZheng.txt). Source: github.com/google/fonts, ofl/mashanzheng. Loaded by the demo-derived fonts.css; not used on screen in this film.
+
+Music and sound
+- All music is original, synthesised in this project: guqin by physical modelling (Karplus–Strong) via lemo-opuscar core/audio/pluck.py (MIT, part of the Lemo-Opuscar library); xiao, gong, drums, foley synthesised with numpy/scipy via core/audio/sfx.py (MIT). No sample libraries were used.
+- The film's picture and the paper/ink compositor are original code for this project, built on the ink-wash engine technique (ink.js, comp.js, land.js) from the Lemo-Opuscar library (MIT), styles/ink-wash.
+
+Song
+- "Lajawaab" (2026), performed, composed and written by Aditya Rikhari; produced by Aditya Rikhari and Akhilesh Khandelwal; a CollabX Productions / Homegrown Music / Atlantic Records release. This film is an independent, unaffiliated visual interpretation of the song's theme. No audio or lyrics from the recording appear in the film. The user is responsible for the use of the song's title and credits in this film.

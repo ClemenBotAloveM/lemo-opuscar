@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lajawaab — an ink-wash visualizer</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  html, body { margin: 0; background: #F2ECDE; overflow: hidden; }
+  canvas { width: 100vw; height: auto; display: block; }
+  #snd { display: none; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<audio id="snd" src="out/mix.wav" loop preload="auto"></audio>
+<script type="module" src="main.js"></script>
+<script>
+  // live preview driver: play the film in a loop; sound starts on first click (browser policy)
+  const snd = document.getElementById('snd');
+  let t0 = performance.now();
+  addEventListener('pointerdown', () => { if (snd.paused) snd.play().catch(() => {}); }, { once: false });
+  (function loop(now) {
+    if (window.READY && window.render) {
+      const dur = window.DUR || 62;
+      const t = (snd && !snd.paused && snd.currentTime > 0) ? (snd.currentTime % dur) : (((now - t0) / 1000) % dur);
+      window.render(t);
+    }
+    requestAnimationFrame(loop);
+  })(performance.now());
+</script>
+</body>
+</html>

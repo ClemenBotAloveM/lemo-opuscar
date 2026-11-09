@@ -1,0 +1,9 @@
+# build outputs and fetched assets stay out of git (rebuild with sh build.sh)
+out/
+stills/
+fonts/*.ttf
+*.mp4
+*.wav
+*.jpg
+events.json
+cues.json
