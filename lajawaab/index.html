@@ -12,21 +12,24 @@
 </head>
 <body>
 <canvas id="c" width="1920" height="1080"></canvas>
-<audio id="snd" src="out/mix.wav" loop preload="auto"></audio>
+<audio id="snd" src="out/mix.wav" loop preload="none"></audio>
 <script type="module" src="main.js"></script>
 <script>
-  // live preview driver: play the film in a loop; sound starts on first click (browser policy)
-  const snd = document.getElementById('snd');
-  let t0 = performance.now();
-  addEventListener('pointerdown', () => { if (snd.paused) snd.play().catch(() => {}); }, { once: false });
-  (function loop(now) {
-    if (window.READY && window.render) {
-      const dur = window.DUR || 62;
-      const t = (snd && !snd.paused && snd.currentTime > 0) ? (snd.currentTime % dur) : (((now - t0) / 1000) % dur);
-      window.render(t);
-    }
-    requestAnimationFrame(loop);
-  })(performance.now());
+  // live preview driver (?play=1): play the film in a loop; sound starts on first click (browser policy).
+  // Render tools open the page without ?play and drive window.render themselves — never both at once.
+  if (new URLSearchParams(location.search).has('play')) {
+    const snd = document.getElementById('snd');
+    let t0 = performance.now();
+    addEventListener('pointerdown', () => { if (snd.paused) snd.play().catch(() => {}); }, { once: false });
+    (function loop(now) {
+      if (window.READY && window.render) {
+        const dur = window.DUR || 62;
+        const t = (snd && !snd.paused && snd.currentTime > 0) ? (snd.currentTime % dur) : (((now - t0) / 1000) % dur);
+        window.render(t);
+      }
+      requestAnimationFrame(loop);
+    })(performance.now());
+  }
 </script>
 </body>
 </html>

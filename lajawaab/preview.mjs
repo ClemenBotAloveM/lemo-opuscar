@@ -21,7 +21,7 @@ const T = {
 function resolve(url) {
   let u; try { u = decodeURIComponent(url.split('?')[0].split('#')[0]); } catch { return { status: 400 }; }
   if (u.includes('\0')) return { status: 400 };
-  if (u === '/') return { redirect: MOUNT + 'index.html' };
+  if (u === '/') return { redirect: MOUNT + 'index.html?play=1' };
   const [base, rest] = u.startsWith(MOUNT) ? [FILM, u.slice(MOUNT.length)] : [LIB, u.replace(/^\/+/, '')];
   const p = path.resolve(base, rest);
   if (p !== base && !p.startsWith(base + path.sep)) return { status: 403 };
